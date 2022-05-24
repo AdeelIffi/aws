@@ -1,9 +1,19 @@
-aws ec2 create-vpc --cidr-block 10.10.0.0/16 --amazon-provided-ipv6-cidr-block
-aws ec2 create-subnet --vpc-id vpc-0876b22c242af3ab2 --cidr-block 10.10.0.0/24 --ipv6-cidr-block 2a05:d018:1d4c:9600::/64
+#!/bin/bash
+
+
+# Creating VPC 
+VPC_ID = $(aws ec2 create-vpc --cidr-block 10.10.0.0/16 --amazon-provided-ipv6-cidr-block --query Vpc.VpcId.Value)
+
+# Creating Subnets
+aws ec2 create-subnet --vpc-id $VPC_ID --cidr-block 10.10.0.0/24 --ipv6-cidr-block 2a05:d018:1d4c:9600::/64
 aws ec2 create-subnet --vpc-id vpc-0876b22c242af3ab2 --cidr-block 10.10.1.0/24 --ipv6-cidr-block 2a05:d018:1d4c:9601::/64
 aws ec2 create-subnet --vpc-id vpc-0876b22c242af3ab2 --cidr-block 10.10.2.0/24 --ipv6-cidr-block 2a05:d018:1d4c:9602::/64
+
+# Creating and attaching IGW
 aws ec2 create-internet-gateway
 aws ec2 attach-internet-gateway --internet-gateway-id igw-06751ad391186e74d --vpc-id vpc-0876b22c242af3ab2
+
+# Creating routes, route tables and associating route tables
 aws ec2 create-route --route-table-id rtb-0ecdfbe215b15eece --destination-ipv6-cidr-block ::/0 --gateway-id igw-06751ad391186e74d
 aws ec2 create-route --route-table-id rtb-0ecdfbe215b15eece --destination-cidr-block 0.0.0.0/0 --gateway-id igw-06751ad391186e74d
 aws ec2 associate-route-table --subnet-id subnet-030777892113d6acd --route-table-id rtb-0ecdfbe215b15eece
