@@ -6,15 +6,12 @@ terraform {
     }
   }
 
-  backend "s3" {
-
-    bucket = "huzaifa-tf-backend"
-    key    = "dev/terraform.tfstate"
-    region = "eu-west-2"
-    shared_credentials_file = "~/.aws/credentials"
-    profile = "terraform"
-    
-
+    backend "s3" {
+    bucket = "my-test-123"
+    encrypt = true
+    key = "state.tfstate"
+    region = var.region
+    profile = "admin"
   }
 }
 
