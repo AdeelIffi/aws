@@ -8,10 +8,11 @@ terraform {
 
     backend "s3" {
     bucket = "my-test-123"
-    encrypt = true
-    key = "state.tfstate"
-    region = var.region
-    profile = "admin"
+    key = "terraformstate.tfstate"
+    region = "eu-west-1"
+    shared_credentials_file = "~/.aws/credentials"
+    profile = "default"
+    
   }
 }
 
@@ -108,7 +109,6 @@ resource "aws_instance" "tf-ec2" {
 
   subnet_id = aws_subnet.tf-pub-subnet.id
 
-  key_name = var.key_name
 
   #security_groups = [ "${aws_security_group.tf-sg-pub.id}" ]
 

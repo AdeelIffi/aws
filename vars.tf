@@ -1,6 +1,6 @@
 variable "region" {
   type    = string
-  default = "eu-west-2"
+  default = "eu-west-1"
 }
 
 variable "shared_config_files" {
@@ -15,7 +15,7 @@ variable "shared_credentials_files" {
 
 variable "profile" {
   type    = string
-  default = "terraform"
+  default = "default"
 }
 
 variable "vpc_cidr" {
@@ -45,7 +45,7 @@ variable "internet_cidr" {
 
 variable "ubuntu_ami" {
   type    = string
-  default = "ami-00de6c6491fdd3ef5"
+  default = "ami-0333305f9719618c7"
 }
 
 variable "instance_type" {
@@ -55,7 +55,7 @@ variable "instance_type" {
 
 variable "key_name" {
   type    = string
-  default = "build-infra-key"
+  default = "default"
 
 }
 
