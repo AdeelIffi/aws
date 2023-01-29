@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage {
+        stage ('First Stage of Build'){
             steps {
                 sh whoami
                 sh 'echo 'I am here''
