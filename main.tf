@@ -6,14 +6,13 @@ terraform {
     }
   }
 
-  backend "s3" {
-
-    bucket = "huzaifa-tf-backend"
-    key    = "dev/terraform.tfstate"
-    region = "eu-west-2"
+    backend "s3" {
+    bucket = "my-test-123"
+    key = "terraformstate.tfstate"
+    region = "eu-west-1"
     shared_credentials_file = "~/.aws/credentials"
-    profile = "terraform"
-
+    profile = "default"
+    
   }
 }
 
@@ -110,7 +109,6 @@ resource "aws_instance" "tf-ec2" {
 
   subnet_id = aws_subnet.tf-pub-subnet.id
 
-  key_name = var.key_name
 
   #security_groups = [ "${aws_security_group.tf-sg-pub.id}" ]
 
