@@ -10,7 +10,7 @@ pipeline {
 
         stage ('Second stage of the build'){
             steps {
-                whoami
+                sh 'whoami'
                 sh 'aws s3 ls'
             }
         }
