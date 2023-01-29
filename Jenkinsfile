@@ -7,5 +7,11 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage ('Second stage of the build'){
+            steps {
+                sh 'aws s3 ls'
+            }
+        }
     }
 }
