@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('First Stage of Build'){
             steps {
-                sh whoami
+                checkout scm
             }
         }
     }
